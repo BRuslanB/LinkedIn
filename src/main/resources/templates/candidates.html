@@ -1,0 +1,185 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate = "layout/main.html">
+<div layout:fragment = "mainContent">
+    <!-- Parameters Find Candidates-->
+    <div class="row flex-content col-12">
+        <div class="col-3 mt-2">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label class="fw-bold" th:text="${'COMPANY'}"></label>
+                </div>
+                <div class="col-12 mt-1">
+                    <select class="form-select" id="selectCompany">
+                        <option class="text-black-50" th:value="${null}">-Выберите компанию-</option>
+<!--                        <option th:value="${0}">-Все компании-</option>-->
+                        <option th:each="com : ${allCompanies}"
+                                th:text="${com.name}"
+                                th:value="${com.id}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 mt-2">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>&nbsp;</label>
+                </div>
+                <div class="col-12 mt-1">
+                    <select class="form-select" id="selectOperand">
+                        <option th:value="${'AND'}">-И-</option>
+                        <option th:value="${'OR'}">-ИЛИ-</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 mt-2">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label class="fw-bold" th:text="${'SPECIALITY'}"></label>
+                </div>
+                <div class="col-12 mt-1">
+                    <select class="form-select" id="selectSpeciality">
+                        <option class="text-black-50" th:value="${null}">-Выберите специальность-</option>
+<!--                        <option th:value="${0}">-Все специальности-</option>-->
+                        <option th:each="spc : ${allSpecialties}"
+                                th:text="${spc.name}"
+                                th:value="${spc.id}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-1 mt-2">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>&nbsp;</label>
+                </div>
+                <div class="col-12 mt-1">
+                    <a class="btn color_style bg_color_style" id="buttonFind"
+                       th:text="${'FIND'}"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 mt-2">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label>&nbsp;</label>
+                </div>
+                <div class="col-12 mt-1">
+                    <a class="btn color_style bg_color_style"
+                       th:href="@{/findcandidates}"
+                       th:text="${'ALL VIEW'}"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- List of Candidates -->
+    <div class="row">
+        <div class="col-12 mt-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr class="fw-bold">
+                        <td th:text="ID"></td>
+                        <td th:text="EMAIL"></td>
+                        <td th:text="${'FULL NAME'}"></td>
+                        <td th:text="COMPANY"></td>
+                        <td th:text="SPECIALITY"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="usr : ${allCandidates}">
+                        <td th:text="${usr.id}"></td>
+                        <td th:text="${usr.email}"></td>
+                        <td th:text="${usr.fullName}"></td>
+                        <td th:text="${usr.company != null ? usr.company.name : '-'}"></td>
+                        <td th:text="${usr.speciality != null ? usr.speciality.name : '-'}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>
+<script type="text/javascript">
+    var btnFind = document.getElementById("buttonFind");
+    var selComp = document.getElementById("selectCompany");
+    var selSpec = document.getElementById("selectSpeciality");
+    var selOper = document.getElementById("selectOperand");
+
+    document.addEventListener('DOMContentLoaded', () => {
+        var valCopm = selComp.options[selComp.selectedIndex].value;
+        var valSpec = selSpec.options[selSpec.selectedIndex].value;
+        var valOper = selOper.options[selOper.selectedIndex].value;
+        if (valCopm === "" || valCopm === null){
+            valCopm = null;
+        }
+        if (valSpec === "" || valSpec === null){
+            valSpec = null;
+        }
+        btnFind.setAttribute('href', '/findcandidates/' + valCopm + '/' +  valOper + '/' + valSpec);
+        // alert("DOMContentLoaded: valCopm=" + valCopm + ", valOper=" + valOper + ", valSpec=" + valSpec);
+    });
+
+    selComp.onchange = function(){
+        var valCopm = selComp.options[selComp.selectedIndex].value;
+        var valSpec = selSpec.options[selSpec.selectedIndex].value;
+        var valOper = selOper.options[selOper.selectedIndex].value;
+        var idxComp = selComp.selectedIndex;
+        var idxSpec = selSpec.selectedIndex;
+        var idxOper = selOper.selectedIndex;
+        if (valCopm === "" || valCopm === null){
+            valCopm = null;
+        }
+        if (valSpec === "" || valSpec === null){
+            valSpec = null;
+        }
+        btnFind.setAttribute('href', '/findcandidates/' + valCopm + '/' +  valOper + '/' + valSpec);
+        // alert("selComp.onchange: valCopm=" + valCopm + ", valOper=" + valOper + ", valSpec=" + valSpec);
+        selComp.selectedIndex = idxComp;
+        selSpec.selectedIndex = idxSpec;
+        selOper.selectedIndex = idxOper;
+    }
+
+    selSpec.onchange = function(){
+        var valCopm = selComp.options[selComp.selectedIndex].value;
+        var valSpec = selSpec.options[selSpec.selectedIndex].value;
+        var valOper = selOper.options[selOper.selectedIndex].value;
+        var idxComp = selComp.selectedIndex;
+        var idxSpec = selSpec.selectedIndex;
+        var idxOper = selOper.selectedIndex;
+        if (valCopm === "" || valCopm === null){
+            valCopm = null;
+        }
+        if (valSpec === "" || valSpec === null){
+            valSpec = null;
+        }
+        btnFind.setAttribute('href', '/findcandidates/' + valCopm + '/' +  valOper + '/' + valSpec);
+        // alert("selSpec.onchange: valCopm=" + valCopm + ", valOper=" + valOper + ", valSpec=" + valSpec);
+        selComp.selectedIndex = idxComp;
+        selSpec.selectedIndex = idxSpec;
+        selOper.selectedIndex = idxOper;
+    }
+
+    selOper.onchange = function(){
+        var valCopm = selComp.options[selComp.selectedIndex].value;
+        var valSpec = selSpec.options[selSpec.selectedIndex].value;
+        var valOper = selOper.options[selOper.selectedIndex].value;
+        var idxComp = selComp.selectedIndex;
+        var idxSpec = selSpec.selectedIndex;
+        var idxOper = selOper.selectedIndex;
+        if (valCopm === "" || valCopm === null){
+            valCopm = null;
+        }
+        if (valSpec === "" || valSpec === null){
+            valSpec = null;
+        }
+        btnFind.setAttribute('href', '/findcandidates/' + valCopm + '/' +  valOper + '/' + valSpec);
+        // alert("selOper.onchange: valCopm=" + valCopm + ", valOper=" + valOper + ", valSpec=" + valSpec);
+        selComp.selectedIndex = idxComp;
+        selSpec.selectedIndex = idxSpec;
+        selOper.selectedIndex = idxOper;
+    }
+</script>

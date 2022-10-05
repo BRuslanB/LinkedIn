@@ -1,0 +1,100 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="layout/main.html">
+<div layout:fragment="mainContent">
+    <div class="row flex-content col-12 mx-auto">
+        <div class="col-4 mt-3 mx-auto text-center">
+            <img alt="Изображение формы регистрации"
+                 src="https://setmyresume.com/wp-content/uploads/2020/07/Apr20_14_LinkedInHBR1.jpg"
+                 th:align="center" width="100%">
+        </div>
+        <!-- SIGN IN -->
+        <div class="col-8 mt-2 mx-auto">
+            <form th:action="@{'/toregister'}" method="post"
+                  class="row flex-content col-12 mx-auto">
+                <div class="col-6 mx-auto">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label class="fw-bold" th:text="EMAIL"></label>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12">
+                            <input type="email" class="form-control" name="user_email" required>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label class="fw-bold" th:text="PASSWORD"></label>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12">
+                            <input type="password" class="form-control" name="user_password" required>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label class="fw-bold" th:text="${'RETYPE PASSWORD'}"></label>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12">
+                            <input type="password" class="form-control" name="user_re_password" required>
+                        </div>
+                    </div>
+                    <button class="btn mt-3 color_style bg_color_style"
+                            th:text="${'SIGN UP'}">
+                    </button>
+                </div>
+                <div class="col-6 mx-auto">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label class="fw-bold" th:text="${'FULL NAME'}"></label>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="user_full_name" required>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label class="fw-bold" th:text="${'COMPANY'}"></label>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12">
+                            <select class="form-select" name="user_company_id">
+                                <option class="text-black-50" th:value="${null}">-Выберите компанию-</option>
+                                <option th:each="com : ${allCompanies}"
+                                        th:text="${com.name}"
+                                        th:value="${com.id}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label class="fw-bold" th:text="${'SPECIALITY'}"></label>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12">
+                            <select class="form-select" name="user_speciality_id">
+                                <option class="text-black-50" th:value="${null}">-Выберите специальность-</option>
+                                <option th:each="spc : ${allSpecialties}"
+                                        th:text="${spc.name}"
+                                        th:value="${spc.id}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</html>

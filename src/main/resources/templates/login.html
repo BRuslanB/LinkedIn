@@ -1,0 +1,42 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+            layout:decorate="layout/main.html">
+    <div layout:fragment="mainContent">
+        <div class="row flex-content col-10 mx-auto">
+            <div class="col-6 mt-2 mx-auto">
+                <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202001/linked-in-2668692_1280__1_.png?iLytbaNXkyfhWUpdjW8tVCXWTf82TTDz&size=770:433"
+                     width="80%" th:align="center" alt="Изображение формы авторизации">
+            </div>
+            <!-- SIGN IN -->
+            <div class="col-4 mt-2 mx-auto">
+                <form th:action="@{'/signin'}" method="post">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label class="fw-bold" th:text="EMAIL"></label>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12">
+                            <input type="email" class="form-control" name="user_email" required>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label class="fw-bold" th:text="PASSWORD"></label>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12">
+                            <input type="password" class="form-control" name="user_password" required>
+                        </div>
+                    </div>
+                    <button class="btn mt-3 color_style bg_color_style"
+                            th:text="${'SIGN IN'}">
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</html>
