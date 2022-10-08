@@ -22,7 +22,7 @@ INSERT INTO t_roles (name, role)
 INSERT INTO t_users (email, full_name, password, avatar_url, company_id, speciality_id)
     VALUES ('admin@gmail.com', 'Иванов', '$2a$10$7VB4nxLa.hxOjL5/NafMLuFPndVGkRZ7FbNfOk44ktBS8h8aqxTsS', NULL, NULL, NULL),
            ('manager@gmail.com', 'Петров', '$2a$10$7VB4nxLa.hxOjL5/NafMLuFPndVGkRZ7FbNfOk44ktBS8h8aqxTsS', NULL, NULL, NULL),
-           ('abravov@gmail.com', 'Абрамов', '$2a$10$7VB4nxLa.hxOjL5/NafMLuFPndVGkRZ7FbNfOk44ktBS8h8aqxTsS', NULL, 1, 3),
+           ('abramov@gmail.com', 'Абрамов', '$2a$10$7VB4nxLa.hxOjL5/NafMLuFPndVGkRZ7FbNfOk44ktBS8h8aqxTsS', NULL, 1, 3),
            ('omarov@gmail.com', 'Омаров', '$2a$10$7VB4nxLa.hxOjL5/NafMLuFPndVGkRZ7FbNfOk44ktBS8h8aqxTsS', NULL, 2, 1),
            ('pupkin@gmail.com', 'Пупкин', '$2a$10$7VB4nxLa.hxOjL5/NafMLuFPndVGkRZ7FbNfOk44ktBS8h8aqxTsS', NULL, 3, 4),
            ('gubin@gmail.com', 'Губин', '$2a$10$7VB4nxLa.hxOjL5/NafMLuFPndVGkRZ7FbNfOk44ktBS8h8aqxTsS', NULL, 4, 2),
