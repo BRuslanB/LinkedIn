@@ -3,9 +3,9 @@ package alabs.team.linkedin.api;
 import alabs.team.linkedin.model.Company;
 import alabs.team.linkedin.model.Speciality;
 import alabs.team.linkedin.model.User;
-import alabs.team.linkedin.services.impl.CompanyServiceImpl;
-import alabs.team.linkedin.services.impl.FileUploadServiceImpl;
-import alabs.team.linkedin.services.impl.SpecialityServiceImpl;
+import alabs.team.linkedin.services.CompanyService;
+import alabs.team.linkedin.services.FileUploadService;
+import alabs.team.linkedin.services.SpecialityService;
 import alabs.team.linkedin.services.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,10 +22,10 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class SecurityController {
-    private final FileUploadServiceImpl fileUploadService;
+    private final FileUploadService fileUploadService;
     private final UserServiceImpl userService;
-    private final CompanyServiceImpl companyService;
-    private final SpecialityServiceImpl specialityService;
+    private final CompanyService companyService;
+    private final SpecialityService specialityService;
 
     @GetMapping("/enter")
     public String enterPage(Model model) {
