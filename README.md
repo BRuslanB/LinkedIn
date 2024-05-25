@@ -40,7 +40,7 @@ linkedin_db
 ```
 3. Build and run the Java application.
 ``` bash
-java -jar ./buld/libs/LinkedIn-0.0.1-SNAPSHOT.jar
+java -jar ./build/libs/LinkedIn-0.0.1-SNAPSHOT.jar
 ```
 or for MS Windows
 ```
