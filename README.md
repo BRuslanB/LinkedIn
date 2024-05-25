@@ -42,6 +42,10 @@ linkedin_db
 ``` bash
 java -jar ./buld/libs/LinkedIn-0.0.1-SNAPSHOT.jar
 ```
+or for MS Windows
+```
+java -jar .\build\libs\LinkedIn-0.0.1-SNAPSHOT.jar
+```
 4. Open in a browser.
 ``` 
 http://localhost:8000/
