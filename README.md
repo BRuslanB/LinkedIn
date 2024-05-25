@@ -38,7 +38,7 @@ git clone https://github.com/BRuslanB/LinkedIn.git
 ``` 
 linkedin_db
 ```
-3. Create and run a Java application.
+3. Build and run the Java application.
 ``` bash
 java -jar ./buld/libs/LinkedIn-0.0.1-SNAPSHOT.jar
 ```
